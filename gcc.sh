@@ -7,9 +7,10 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+which g++-${version} gfortran-${version} gdb > /dev/null && echo "already installed" && exit 0
+
 apt-add-repository -y ppa:ubuntu-toolchain-r/test
-apt-get update
-apt-get install -y gcc-${version} g++-${version} gfortran-${version}
+apt-get install -y g++-${version}-multilib gfortran-${version} gdb
 
 update-alternatives \
     --verbose \

@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh
-source /tmp/llvm.sh all
+source /tmp/llvm.sh all -m https://mirrors.zju.edu.cn/llvm-apt
 
 update-alternatives \
     --verbose \
