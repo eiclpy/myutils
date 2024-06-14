@@ -17,8 +17,10 @@ download https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.
 download https://raw.githubusercontent.com/doctest/doctest/master/doctest/doctest.h doctest.h 15
 download https://raw.githubusercontent.com/p-ranav/argparse/master/include/argparse/argparse.hpp argparse.h 15
 download https://raw.githubusercontent.com/Neargye/nameof/master/include/nameof.hpp nameof.h 15
+download https://raw.githubusercontent.com/martinus/nanobench/master/src/include/nanobench.h nanobench.h 15
 
 [ -d magic_enum ] || git clone https://github.com/Neargye/magic_enum.git || git clone ${PROXY}https://github.com/Neargye/magic_enum.git
+sed 's/#include "/#include "magic_enum\//g' magic_enum/include/magic_enum/magic_enum_all.hpp > magic_enum/include/magic_enum.h
 
 echo "downloaded to ${DOWNLOAD_DIR}"
 
@@ -28,6 +30,6 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 cp *.h ${INCLUDE_PATH}
-cp -r magic_enum/include/magic_enum ${INCLUDE_PATH}
+cp -r magic_enum/include/* ${INCLUDE_PATH}
 
 echo "installed to ${INCLUDE_PATH}"
